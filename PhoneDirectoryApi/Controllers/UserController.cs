@@ -43,6 +43,9 @@ namespace PhoneDirectoryApi.Controllers
         [HttpDelete]
         public Result DeleteContactInfo(string id) => _user.DeleteUserContact(id);
 
+        [Route("api/[controller]")]
+        [HttpGet]
+        public Result UsersList() => _user.Users();
 
     }
 }

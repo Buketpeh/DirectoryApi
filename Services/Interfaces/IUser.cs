@@ -16,5 +16,6 @@ namespace Services.Interfaces
         Result DetailUser(string id);
         Result AddUserContact(string id, ContactInfoListBindingModel model);
         Result DeleteUserContact(string id);
+        Result Users();
     }
 }
