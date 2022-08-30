@@ -27,15 +27,19 @@ namespace PhoneDirectoryApi.Controllers
         [HttpPut]
         public Result Update(AddOrUpdateUserBindingModel model) => _user.UpdateUser(model);
 
-        [Route("api/[controller]")]
+        [Route("api/[controller]/{id}")]
         [HttpDelete]
         public Result Delete(string id) => _user.DeleteUser(id);
 
-        [Route("api/[controller]/{Id}/ContactInfo")]
+        [Route("api/[controller]/{id}")]
+        [HttpGet]
+        public Result Detail(string id) => _user.DetailUser(id);
+
+        [Route("api/[controller]/{id}/ContactInfo")]
         [HttpPost]
         public Result CreateContactInfo(string id,ContactInfoListBindingModel model) =>  _user.AddUserContact(id,model) ;
 
-        [Route("api/[controller]/ContactInfo/{Id}")]
+        [Route("api/[controller]/ContactInfo/{id}")]
         [HttpDelete]
         public Result DeleteContactInfo(string id) => _user.DeleteUserContact(id);
 

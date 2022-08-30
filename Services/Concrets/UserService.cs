@@ -53,6 +53,12 @@ namespace Services.Concrets
 
             return result;
         }
+        public Result DetailUser(string id)
+        {
+            var result = _userRepository.GetById(id);
+
+            return result;
+        }
 
         public Result AddUserContact(string id, ContactInfoListBindingModel model)
         {
