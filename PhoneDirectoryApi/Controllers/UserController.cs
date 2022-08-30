@@ -8,7 +8,6 @@ using Shared.Model.BindingModel;
 namespace PhoneDirectoryApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
     public class UserController : ControllerBase
     {
         private readonly IRepository<User> _userRepository;
@@ -20,15 +19,21 @@ namespace PhoneDirectoryApi.Controllers
             _user = user;
 
         }
-
-        [HttpPost(Name = "")]
+        [Route("api/[controller]")]
+        [HttpPost]
         public Result Create(AddOrUpdateUserBindingModel model) => _user.AddUser(model);
 
-        [HttpPut(Name = "")]
+        [Route("api/[controller]")]
+        [HttpPut]
         public Result Update(AddOrUpdateUserBindingModel model) => _user.UpdateUser(model);
 
-        [HttpDelete(Name = "")]
+        [Route("api/[controller]")]
+        [HttpDelete]
         public Result Delete(string id) => _user.DeleteUser(id);
+
+        [Route("api/[controller]/{Id}/ContactInfo")]
+        [HttpPost]
+        public Result CreateContactInfo(string id,ContactInfoListBindingModel model) =>  _user.AddUserContact(id,model) ;
 
 
     }

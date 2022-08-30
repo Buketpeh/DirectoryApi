@@ -50,5 +50,22 @@ namespace Services.Concrets
 
             return result;
         }
+
+        public Result AddUserContact(string id, ContactInfoListBindingModel model)
+        {
+            var result = _userRepository.GetById(id);
+            if (result == null)
+                throw new Exception("Record not found!");
+            foreach (var item in model.ContactInfo)
+            {
+                result.Entity.CommunicationInfo.Add(new CommunicationInfo
+                {
+                    InfoType = item.InfoType,
+                    Info = item.Info
+                });
+            }
+
+            return result;
+        }
     }
 }
