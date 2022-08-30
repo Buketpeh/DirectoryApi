@@ -1,6 +1,9 @@
 ﻿using Data.Entities;
 using Microsoft.AspNetCore.Mvc;
+using PhoneDirectoryApi.Core.Models;
 using PhoneDirectoryApi.Core.Repository.Abstract;
+using Services.Interfaces;
+using Shared.Model.BindingModel;
 
 namespace PhoneDirectoryApi.Controllers
 {
@@ -9,25 +12,19 @@ namespace PhoneDirectoryApi.Controllers
     public class UserController : ControllerBase
     {
         private readonly IRepository<User> _userRepository;
-        public UserController(IRepository<User> userRepository)
+        private readonly IUser _user;
+
+        public UserController(IRepository<User> userRepository, IUser user)
         {
             _userRepository = userRepository;
+            _user = user;
 
         }
 
         [HttpPost(Name = "")]
-        public IActionResult Create()
-        {
-            var result = _userRepository.InsertOne(new User
-            {
-                FirstName = "Test1",
-                LastName = "TestLastName",
-                Company = "TestCompany"
-                
-            });
-
+        public Result Create(AddOrUpdateUserBindingModel model) => _user.AddUser(model);
         
-            return Ok(result);
-        }
+  
+
     }
 }
