@@ -35,6 +35,10 @@ namespace PhoneDirectoryApi.Controllers
         [HttpPost]
         public Result CreateContactInfo(string id,ContactInfoListBindingModel model) =>  _user.AddUserContact(id,model) ;
 
+        [Route("api/[controller]/ContactInfo/{Id}")]
+        [HttpDelete]
+        public Result DeleteContactInfo(string id) => _user.DeleteUserContact(id);
+
 
     }
 }

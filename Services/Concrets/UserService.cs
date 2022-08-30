@@ -13,10 +13,13 @@ namespace Services.Concrets
 {
     public class UserService: IUser
     {
+        //To do: Repolar için ortak bir method yazılacak
         private readonly IRepository<User> _userRepository;
-        public UserService(IRepository<User> userRepository)
+        private readonly IRepository<CommunicationInfo> _communicationRepository;
+        public UserService(IRepository<User> userRepository,IRepository<CommunicationInfo> communicationRepository)
         {
             _userRepository = userRepository;
+            _communicationRepository = communicationRepository;
         }
         public Result AddUser(AddOrUpdateUserBindingModel model)
         {
@@ -60,10 +63,18 @@ namespace Services.Concrets
             {
                 result.Entity.CommunicationInfo.Add(new CommunicationInfo
                 {
+                    _id = MongoDB.Bson.ObjectId.GenerateNewId(),
                     InfoType = item.InfoType,
                     Info = item.Info
                 });
             }
+
+            return result;
+        }
+
+        public Result DeleteUserContact(string id)
+        {
+            var result = _userRepository.DeleteById(id);
 
             return result;
         }
