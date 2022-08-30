@@ -23,8 +23,13 @@ namespace PhoneDirectoryApi.Controllers
 
         [HttpPost(Name = "")]
         public Result Create(AddOrUpdateUserBindingModel model) => _user.AddUser(model);
-        
-  
+
+        [HttpPut(Name = "")]
+        public Result Update(AddOrUpdateUserBindingModel model) => _user.UpdateUser(model);
+
+        [HttpDelete(Name = "")]
+        public Result Delete(string id) => _user.DeleteUser(id);
+
 
     }
 }

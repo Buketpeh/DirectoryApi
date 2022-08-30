@@ -32,5 +32,23 @@ namespace Services.Concrets
             return result;
         }
 
+        public Result UpdateUser(AddOrUpdateUserBindingModel model)
+        {
+            var result = _userRepository.ReplaceOne(new User
+            {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Company = model.Company
+
+            },model._id.ToString());
+
+            return result;
+        }
+        public Result DeleteUser(string id)
+        {
+            var result = _userRepository.DeleteById(id);
+
+            return result;
+        }
     }
 }

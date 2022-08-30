@@ -11,5 +11,7 @@ namespace Services.Interfaces
     public interface IUser
     {
         Result AddUser(AddOrUpdateUserBindingModel model);
+        Result UpdateUser(AddOrUpdateUserBindingModel model);
+        Result DeleteUser(string id);
     }
 }
